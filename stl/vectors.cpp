@@ -1,44 +1,37 @@
-#include <iostream>
-#include <vector>
-#include <string>
 #include <algorithm>
+#include <iostream>
 #include <math.h>
+#include <string>
+#include <vector>
 
-void print_vector(std::string name, std::vector<int> v)
-{
+void print_vector(std::string name, std::vector<int> v) {
   std::cout << name << ": ";
-  for (int i = 0; i < v.size(); i++)
-  {
+  for (int i = 0; i < v.size(); i++) {
     std::cout << v[i] << " ";
   }
   std::cout << std::endl;
 }
 
-bool isPerfectSquare(int x)
-{
-  if (x >= 0)
-  {
+bool isPerfectSquare(int x) {
+  if (x >= 0) {
     return (ceil((double)sqrt(x)) == floor((double)sqrt(x)));
-  }
-  else
-  {
+  } else {
     return false;
   }
 }
 
-void vector_copy()
-{
+void vector_copy() {
   auto nums = std::vector<int>{1, 2, 3, 4, 5, 6, 7, 8, 9};
   auto perfectSquares = std::vector<int>(4); // Allocate space for 4 integers
 
-  std::copy_if(nums.begin(), nums.end(), perfectSquares.begin(), isPerfectSquare);
+  std::copy_if(nums.begin(), nums.end(), perfectSquares.begin(),
+               isPerfectSquare);
 
   print_vector("List of nums", nums);
   print_vector("Perfect squares", perfectSquares);
 }
 
-int main(void)
-{
+int main(void) {
 
   std::vector<int> v1 = {1, 2, 3, 4, 5, 6};
   std::vector<int> v2;
