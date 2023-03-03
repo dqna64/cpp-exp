@@ -8,7 +8,7 @@ g++ -std=c++11 ./main.cpp && ./a.out
 
 ```
 mkdir build
-cmake -S . -B ./build
+cmake -S . -B ./build -DCMAKE_BUILD_TYPE=<Debug|Release>
 cmake --build ./build
 ./build/
 ```
