@@ -1,0 +1,130 @@
+#include <iostream>
+
+namespace sample0 {
+/**
+ * When vtable non-empty, each method will have a pointer to the vtable to look
+ * up the method implementation. When vtable empty, each method will have a
+ * pointer to the class's code. This is called "early binding" or "static
+ * binding" because the compiler knows which method to call at compile time.
+ * This example demonstrates the latter.
+ *
+ */
+class BaseClass {
+public:
+  BaseClass() { std::cout << "BaseClass constructor" << std::endl; }
+  std::string get_class_name() const { return "BaseClass"; };
+
+private:
+};
+
+class SubClass : public BaseClass {
+public:
+  SubClass() { std::cout << "SubClass constructor" << std::endl; }
+  std::string get_class_name() const { return "SubClass"; }
+
+private:
+};
+
+void print_class_name(const BaseClass base) {
+  std::cout << base.get_class_name() << '\n';
+}
+
+void print_class_name_ref(const BaseClass &base) {
+  std::cout << base.get_class_name() << '\n';
+}
+
+int main() {
+
+  std::cout << "==== Sample 0 ====\n";
+  BaseClass base_class;
+  SubClass subclass;
+  print_class_name_ref(base_class); // "BaseClass"
+  print_class_name_ref(subclass);   // "BaseClass" because get_class_name() is
+                                    // not virtual
+  return 0;
+}
+} // namespace sample0
+
+namespace sample1 {
+
+/**
+ * Must pass class instances by reference or pointer to avoid slicing and
+ * achieve polymorphism in context of "don't pay for what you don't use".
+ * Don't pass class instances by value.
+ *
+ */
+
+class BaseClass {
+public:
+  virtual std::string get_class_name() const { return "BaseClass"; };
+  int get_member() const { return member_; }
+
+private:
+  int member_;
+};
+
+class SubClass : public BaseClass {
+public:
+  std::string get_class_name() const override { return "SubClass"; }
+
+private:
+  int subclass_data_;
+};
+
+void print_class_name(const BaseClass base) {
+  std::cout << base.get_class_name() << ' ' << base.get_member() << '\n';
+}
+
+void print_class_name_ref(const BaseClass &base) {
+  std::cout << base.get_class_name() << ' ' << base.get_member() << '\n';
+}
+
+int main() {
+
+  std::cout << "==== Sample 1 ====\n";
+  BaseClass base_class;
+  SubClass subclass;
+  print_class_name(base_class);     // "BaseClass 0"
+  print_class_name(subclass);       // "BaseClass 0"
+  print_class_name_ref(base_class); // "BaseClass 0"
+  print_class_name_ref(subclass);   // "SubClass 0"
+  return 0;
+}
+} // namespace sample1
+
+namespace sample2 {
+class BaseClass {
+public:
+  virtual std::string get_class_name() const { return "BaseClass"; };
+  int get_member() const { return member_; }
+
+  ~BaseClass() { std::cout << "Destructing base class\n"; }
+
+private:
+  int member_;
+};
+
+class SubClass : public BaseClass {
+public:
+  std::string get_class_name() const override { return "SubClass"; }
+
+  ~SubClass() { std::cout << "Destructing subclass\n"; }
+};
+
+int main() {
+  std::cout << "==== Sample 2 ====\n";
+  auto baseclass =
+      static_cast<std::unique_ptr<BaseClass>>(std::make_unique<BaseClass>());
+  auto baseclass_subclass =
+      static_cast<std::unique_ptr<BaseClass>>(std::make_unique<SubClass>());
+  std::cout << baseclass->get_class_name() << std::endl;          // "BaseClass"
+  std::cout << baseclass_subclass->get_class_name() << std::endl; // "SubClass"
+  return 0;
+};
+} // namespace sample2
+
+int main() {
+  sample0::main();
+  sample1::main();
+  sample2::main();
+}
