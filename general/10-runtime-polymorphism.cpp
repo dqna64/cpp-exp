@@ -170,9 +170,44 @@ int main() {
 }
 } // namespace sample3
 
+namespace sample4 {
+/**
+ * When constructing a class, the constructor of the base class is
+ * called at a point in time where the derived class is not yet fully
+ * constructed.
+ * Similar problem for destruction.
+ * Basically, expect unexpected behaviour when using virtual functions
+ * in constructors and destructors.
+ *
+ */
+class Animal {
+public:
+  Animal() { speak(); }
+  ~Animal() { speak(); }
+  virtual void speak() { std::cout << "Animal speaks" << std::endl; }
+};
+
+class Dog : public Animal {
+public:
+  void speak() override { std::cout << "Woof" << std::endl; }
+};
+
+int main() {
+  // Unexpected behaviour:
+  // Upon construction, the virtual override function Dog::speak() is
+  // not yet available, so the base class Animal::speak() is called.
+  // Upon destructions, the virtual override function Dog::speak() is
+  // no longer available, so the base class Animal::speak() is called.
+  Dog *fido = new Dog();
+  return 0;
+}
+
+} // namespace sample4
+
 int main() {
   sample0::main();
   sample1::main();
   sample2::main();
   sample3::main();
+  sample4::main();
 }
