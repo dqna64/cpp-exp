@@ -123,8 +123,56 @@ int main() {
 };
 } // namespace sample2
 
+namespace sample3 {
+
+class GrandClass {
+private:
+  char char_data_;
+
+public:
+  GrandClass(char char_data) : char_data_(char_data) {}
+  void print_class_name() const { std::cout << "GrandClass" << std::endl; }
+};
+class BaseClass : public GrandClass {
+private:
+  int int_data_;
+
+public:
+  BaseClass(char char_data, int int_data)
+      : GrandClass(char_data), int_data_(int_data) {}
+  void print_class_name() const { std::cout << "BaseClass" << std::endl; }
+};
+class SubClass : public BaseClass {
+private:
+  double double_data;
+
+public:
+  SubClass(char char_data, int int_data, double double_data)
+      : BaseClass(char_data, int_data), double_data(double_data) {}
+  void print_class_name() const { std::cout << "SubClass" << std::endl; }
+};
+
+int main() {
+  std::cout << "==== Sample 3 ====\n";
+  GrandClass grandClass = GrandClass('a');
+  BaseClass baseClass = BaseClass('a', 1);
+  BaseClass subClassStaticallyBaseClass = SubClass('b', 2, 3.0);
+  SubClass subClass = SubClass('c', 4, 5.0);
+  grandClass.print_class_name();
+  baseClass.print_class_name();                                  // "BaseClass"
+  subClassStaticallyBaseClass.print_class_name();                // "BaseClass"
+  subClass.print_class_name();                                   // "SubClass"
+  std::cout << sizeof(grandClass) << std::endl;                  // 1
+  std::cout << sizeof(baseClass) << std::endl;                   // 8
+  std::cout << sizeof(subClassStaticallyBaseClass) << std::endl; // 8
+  std::cout << sizeof(subClass) << std::endl;                    // 16
+  return 0;
+}
+} // namespace sample3
+
 int main() {
   sample0::main();
   sample1::main();
   sample2::main();
+  sample3::main();
 }
