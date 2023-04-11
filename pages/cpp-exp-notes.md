@@ -1,0 +1,39 @@
+- commands
+	- `g++ -E`
+	- `g++ -S to see object file`
+- Misc
+	- References
+	- value semantics
+	- types
+		- type casting
+	- top-level vs bottom-level const
+	- `const`
+	- `constexpr`
+	- function overloading
+		- overload resolution
+	- Initializer list
+		- *Can be used to initialize array, container, class object*
+- ## Scopes (3.1)
+	- list types of scopes
+	- `namespace`
+		- `inline` namespace
+		- anonymous namespace -- members only accessible within file
+		- aliases
+		- `using` directive
+		- name lookup, ambiguity, overload resolution, argument-dependent lookup (ADL)
+	- object lifecycle
+		- object construction
+			- constructor
+			- methods to initialise
+				- function call syntax `MyClass myObj(1, 'b')`
+				- initialiser list / uniform initialisation syntax `MyClass myObj{1,'b'}`
+				- `new` operator `MyClass* myObjectPtr = new MyClass(1, 'b')`
+		- object destruction
+- ## Class Types (3.2)
+- [] INCOMPLETE
+- ## Resource Management
+	- `new`
+	- `delete`, `delete[]`
+	- Rule of 5
+	- copy constructor and assignment operator
+	- move constructor and assignment operator
