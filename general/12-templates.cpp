@@ -56,24 +56,28 @@ public:
   void print() { std::cout << "General Template" << std::endl; }
 };
 
-// Partial specialization for string
+// Explicit specialization for string
 template <> class MyClass<std::string> {
 public:
-  void print() { std::cout << "Specialization for string" << std::endl; }
+  void print() {
+    std::cout << "Explicit Specialization for string" << std::endl;
+  }
 };
 
 // Partial specialization for pointer
 template <typename K> class MyClass<K *> {
 public:
-  void print() { std::cout << "Specialization for pointer" << std::endl; }
+  void print() {
+    std::cout << "Partial Specialization for pointer" << std::endl;
+  }
 };
 
 int main() {
-  std::cout << "==== Partial Specialisation Demo ====" << std::endl;
+  std::cout << "==== Specialisation Demo ====" << std::endl;
   MyClass<double> obj1; // Uses the general template
   obj1.print();         // Output: "General Template"
 
-  MyClass<std::string> obj2; // Uses the partial specialization for string
+  MyClass<std::string> obj2; // Uses the explicit specialization for string
   obj2.print();              // Output: "Specialization for string"
 
   MyClass<char *> obj3; // Uses the partial specialization for pointer
