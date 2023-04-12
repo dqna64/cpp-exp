@@ -37,3 +37,16 @@
 	- Rule of 5
 	- copy constructor and assignment operator
 	- move constructor and assignment operator
+- ## Templates
+	- templates intro: https://slides.com/haydensmith/comp6771-21t2-7-1
+	- advanced templates: https://slides.com/haydensmith/comp6771-21t2-8-1
+	- type parameter
+	- nontype parameter
+	- *must put template definitions inside header file*
+	- lazy instantiation
+	- inclusion compilation model
+	- `constexpr`
+	- specialisation
+		- partial specialisation
+		- explicit specialisation
+	- type traits

@@ -84,12 +84,40 @@ int main() {
 
   return 0;
 }
-
 } // namespace partial_specialisation_demo
+namespace type_traits_demo {
+
+template <typename T> struct is_void {
+  static const bool value = false;
+};
+template <> struct is_void<void> {
+  static const bool value = true;
+};
+
+template <typename T> class MyClass {
+public:
+  MyClass() {
+    if (is_void<T>::value) {
+      std::cout << "Type is void" << std::endl;
+    } else {
+      std::cout << "Type is not void" << std::endl;
+    }
+  };
+};
+
+int main() {
+  std::cout << "==== Type Traits Demo ====" << std::endl;
+  MyClass<int> obj1;  // Type is not void, prints "Type is not void"
+  MyClass<void> obj2; // Type is void, prints "Type is void"
+  return 0;
+} // namespace type_traits_demo
+
+} // namespace type_traits_demo
 
 int main() {
   template_demo::main();
   partial_specialisation_demo::main();
+  type_traits_demo::main();
 
   return 0;
 }
