@@ -58,9 +58,22 @@ int main() {
 }
 } // namespace demo3
 
+namespace demo4 {
+template <typename T> auto get(T *begin, T *end, int i) -> decltype(*begin) {
+  return *(begin + i);
+}
+
+void main() {
+  std::cout << "=== demo4 ===" << std::endl;
+  int a[] = {1, 2, 3, 4, 5};
+  std::cout << get(a, a + 5, 2) << std::endl; // 3
+}
+} // namespace demo4
+
 int main() {
   demo1::main();
   demo2::main();
   demo3::main();
+  demo4::main();
   return 0;
 }
