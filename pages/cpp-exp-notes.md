@@ -50,3 +50,7 @@
 		- partial specialisation
 		- explicit specialisation
 	- type traits
+	- variadic templates
+	- member templates
+- ## Misc
+	- `decltype()`

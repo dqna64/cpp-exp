@@ -91,6 +91,10 @@ int main() {
 } // namespace partial_specialisation_demo
 namespace type_traits_demo {
 
+/**
+ * Demonstration of using type trait to change logic based on type.
+ */
+
 template <typename T> struct is_void {
   static const bool value = false;
 };
@@ -114,14 +118,73 @@ int main() {
   MyClass<int> obj1;  // Type is not void, prints "Type is not void"
   MyClass<void> obj2; // Type is void, prints "Type is void"
   return 0;
-} // namespace type_traits_demo
+}
 
 } // namespace type_traits_demo
+
+namespace type_traits_demo_2 {
+#include <iostream>
+#include <type_traits>
+
+// Type trait to determine if a type is a pointer
+template <typename T> struct IsPointer {
+  static const bool value = false;
+};
+
+template <typename T> struct IsPointer<T *> {
+  static const bool value = true;
+};
+
+// Test function
+template <typename T> void printTypeTrait() {
+  if (IsPointer<T>::value) {
+    std::cout << typeid(T).name() << " is a pointer." << std::endl;
+  } else {
+    std::cout << typeid(T).name() << " is not a pointer." << std::endl;
+  }
+}
+
+int main() {
+  std::cout << "==== Type Traits Demo 2 ====" << std::endl;
+  printTypeTrait<int>();     // Output: "int is not a pointer."
+  printTypeTrait<float *>(); // Output: "float* is a pointer."
+  printTypeTrait<char>();    // Output: "char is not a pointer."
+
+  return 0;
+}
+
+} // namespace type_traits_demo_2
+
+namespace type_traits_demo_3 {
+/**
+ * Demo type trait to determine if a type is a number
+ *
+ */
+template <typename T> void print_is_number(T x) {
+  if (std::is_integral<T>::value) {
+    std::cout << "Type is integral" << std::endl;
+  } else {
+    std::cout << "Type is not integral" << std::endl;
+  }
+}
+
+int main() {
+  std::cout << "==== Type Traits Demo 3 ====" << std::endl;
+  print_is_number(1);                   // Type is integral
+  print_is_number(1.0);                 // Type is not integral
+  print_is_number('c');                 // Type is integral
+  print_is_number(std::string("word")); // Type is not integral
+
+  return 0;
+}
+} // namespace type_traits_demo_3
 
 int main() {
   template_demo::main();
   partial_specialisation_demo::main();
   type_traits_demo::main();
+  type_traits_demo_2::main();
+  type_traits_demo_3::main();
 
   return 0;
 }
