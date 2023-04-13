@@ -204,10 +204,52 @@ int main() {
 
 } // namespace sample4
 
+namespace sample5 {
+/**
+ * @brief Calling virtual functions during construction of polymorphic objects
+ * can result in unexpected behaviour.
+ *
+ */
+class Base {
+public:
+  Base() {
+    // Calling the virtual function during construction of an instance of
+    // this Base class, when the Derived class is not yet fully constructed.
+    // (This is generally not recommended)
+    foo();
+  }
+
+  virtual void foo() { std::cout << "Base::foo()" << std::endl; }
+};
+
+class Derived : public Base {
+public:
+  Derived() {
+    // foo() in Derived class is not fully constructed yet,
+    // calling it here can result in unexpected behavior
+    foo();
+  }
+
+  void foo() override { std::cout << "Derived::foo()" << std::endl; }
+};
+
+int main() {
+  std::cout << "==== Sample 5 ====\n";
+  Derived d; // Creating an object of Derived class. The constructor of
+             // Derived class calls foo() on the partially constructed object,
+             // resulting in the incorrect vtable being used.
+             // Output: Base::foo() then Derived::foo()
+  d.foo();   // Calling foo() on the fully constructed object.
+             // Output: Derived::foo()
+  return 0;
+}
+
+} // namespace sample5
 int main() {
   sample0::main();
   sample1::main();
   sample2::main();
   sample3::main();
   sample4::main();
+  sample5::main();
 }

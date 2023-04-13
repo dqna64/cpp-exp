@@ -37,6 +37,18 @@
 	- Rule of 5
 	- copy constructor and assignment operator
 	- move constructor and assignment operator
+- ## Inheritance /  Polymorphism
+	- structs & classes
+	- member visibility (public, protected, private for structs & classes)
+		- default visibility
+	- object slicing problem
+		- *consequence: only pointers and references to classes can be used for runtime polymorphism*
+	- static vs dynamic polymorphism i.e. compile-time vs run-time
+	- static vs dynamic binding
+	- `virtual`, `override`, `final`
+	- *default arguments of `virtual` methods are determined at compile time*
+	- vtable
+	-
 - ## Templates
 	- templates intro: https://slides.com/haydensmith/comp6771-21t2-7-1
 	- advanced templates: https://slides.com/haydensmith/comp6771-21t2-8-1
