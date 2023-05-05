@@ -48,7 +48,7 @@ int main() {
 }
 } // namespace template_demo
 
-namespace partial_specialisation_demo {
+namespace specialisation_demo {
 
 // General template
 template <typename T> class MyClass {
@@ -88,7 +88,7 @@ int main() {
 
   return 0;
 }
-} // namespace partial_specialisation_demo
+} // namespace specialisation_demo
 namespace type_traits_demo {
 
 /**
@@ -181,7 +181,7 @@ int main() {
 
 int main() {
   template_demo::main();
-  partial_specialisation_demo::main();
+  specialisation_demo::main();
   type_traits_demo::main();
   type_traits_demo_2::main();
   type_traits_demo_3::main();

@@ -243,8 +243,69 @@ int main() {
              // Output: Derived::foo()
   return 0;
 }
-
 } // namespace sample5
+
+namespace nonvirtual_destructor_for_polymorphic_classes {
+
+class Base {
+public:
+  Base() { std::cout << "Base constructor" << std::endl; }
+
+  ~Base() { std::cout << "Base destructor" << std::endl; }
+};
+
+class Derived : public Base {
+public:
+  Derived() { std::cout << "Derived constructor" << std::endl; }
+
+  ~Derived() { std::cout << "Derived destructor" << std::endl; }
+};
+
+int main() {
+  std::cout << "==== Nonvirtual destructor for polymorphic classes ====\n";
+  Base *obj = new Derived(); // Creating a Derived object through a Base pointer
+  delete obj;                // Deleting the object through the Base pointer.
+                             // Only the destructor of the Base class is called.
+                             // Potential memory leak if the Derived class
+                             // contains additional data members.
+                             // Output: Base constructor
+                             //         Derived constructor
+                             //         Base destructor
+  return 0;
+}
+
+} // namespace nonvirtual_destructor_for_polymorphic_classes
+namespace virtual_destructor_for_polymorphic_classes {
+
+class Base {
+public:
+  Base() { std::cout << "Base constructor" << std::endl; }
+
+  virtual ~Base() { std::cout << "Base destructor" << std::endl; }
+};
+
+class Derived : public Base {
+public:
+  Derived() { std::cout << "Derived constructor" << std::endl; }
+
+  ~Derived() { std::cout << "Derived destructor" << std::endl; }
+};
+
+int main() {
+  std::cout << "==== Virtual destructor for polymorphic classes ====\n";
+  Base *obj = new Derived(); // Creating a Derived object through a Base pointer
+  delete obj;                // Deleting the object through the Base pointer.
+                             // The destructor of the Derived class is called,
+                             // followed by the destructor of the Base class.
+                             // Output: Base constructor
+                             //         Derived constructor
+                             //         Derived destructor
+                             //         Base destructor
+  return 0;
+}
+
+} // namespace virtual_destructor_for_polymorphic_classes
+
 int main() {
   sample0::main();
   sample1::main();
@@ -252,4 +313,6 @@ int main() {
   sample3::main();
   sample4::main();
   sample5::main();
+  nonvirtual_destructor_for_polymorphic_classes::main();
+  virtual_destructor_for_polymorphic_classes::main();
 }

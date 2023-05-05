@@ -1,3 +1,4 @@
+- {{renderer :tocgen}}
 - commands
 	- `g++ -E`
 	- `g++ -S to see object file`
@@ -13,6 +14,45 @@
 		- overload resolution
 	- Initializer list
 		- *Can be used to initialize array, container, class object*
+- ## STL Containers
+	- lec 2.2
+	- [](https://embeddedartistry.com/blog/2017/06/21/an-introduction-to-stdvector/)[https://embeddedartistry.com/blog/2017/06/21/an-introduction-to-stdvector/](https://embeddedartistry.com/blog/2017/06/21/an-introduction-to-stdvector/)
+	- [](https://embeddedartistry.com/blog/2017/08/02/an-overview-of-c-stl-containers/)[https://embeddedartistry.com/blog/2017/08/02/an-overview-of-c-stl-containers/](https://embeddedartistry.com/blog/2017/08/02/an-overview-of-c-stl-containers/)
+	- [](https://www.cplusplus.com/reference/stl/)[https://www.cplusplus.com/reference/stl/](https://www.cplusplus.com/reference/stl/)
+	- [](https://en.cppreference.com/w/cpp/container)[https://en.cppreference.com/w/cpp/container](https://en.cppreference.com/w/cpp/container)
+	- Sequence containers: array, vector, deque, forward_list, list
+	- Associative containers: set, multiset, map, multimap
+		- There are also unordered versions of these.
+	- Container adaptors:
+		- stack, queue, priority_queue
+	- Aspects / variables
+		- Implementation
+		- Time complexity of operations
+		- Cache locality
+		- Ordering guarantees (for associative containers)
+		- Duplicate element handling (for associative containers)
+		- Automatic resizing
+- ## STL Iterators
+	- lec 2.3
+	- `const std::vector<int>::iterator` vs `std::vector<int>::const_iterator`
+	- Iterator invalidation
+	- Iterator adaptors
+		- Reverse iterators
+		- Back inserter iterators
+		- Insert iterators
+	- Iterator categories
+		- input, output, forward, bi-directional, random access
+- ## STL Algorithms
+	- lec 2.4
+	- Examples
+		- `std::accumulate`
+		- `std::copy`
+		- `std::find`
+		- `std::find_if`
+		- `std::transform`
+		- `std::swap`
+		- `std::lower_bound`
+	- Algorithms’ Iterator Requirements
 - ## Scopes (3.1)
 	- list types of scopes
 	- `namespace`
@@ -48,12 +88,14 @@
 	- `virtual`, `override`, `final`
 	- *default arguments of `virtual` methods are determined at compile time*
 	- vtable
+	- *Every polymorphic classes destructor must be virtual, from base to last derived*
 	-
 - ## Templates
 	- templates intro: https://slides.com/haydensmith/comp6771-21t2-7-1
 	- advanced templates: https://slides.com/haydensmith/comp6771-21t2-8-1
-	- type parameter
-	- nontype parameter
+	- template type parameter
+	- template non-type parameter
+	- template template parameter
 	- *must put template definitions inside header file*
 	- lazy instantiation
 	- inclusion compilation model
@@ -64,5 +106,27 @@
 	- type traits
 	- variadic templates
 	- member templates
+- ## Metaprogramming
+	- template metaprogramming (TMP)
+		- SFINAE (substitution failure is not an error)
+			- function templates
+			- types
+			- expression
+		- type traits
+			- shortened type traits alias
+		- type transformations
+		- `#include <type_traits>`
+			- `std::is_same`
+			- `std::is_integral`
+			- `std::is_void`
+	- `decltype()`
+		- `decltype(auto)`
+	- unevaluated contexts
+	- `declval()`
+	- `constexpr`
+		- variables
+		- functions
+		- if statements
+	- `consteval`
 - ## Misc
 	- `decltype()`

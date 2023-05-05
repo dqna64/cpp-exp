@@ -70,10 +70,61 @@ void main() {
 }
 } // namespace demo4
 
+namespace demo5 {
+
+void main() {
+  std::cout << "=== demo5 ===" << std::endl;
+  int a = 5;
+  decltype(a) aa = 6;
+  int &b = a;
+  decltype((b)) bb = b;
+  int &&c = std::move(5);
+  decltype(c) cc = std::move(c);
+
+  int d = 8;
+  decltype(d) dd = d;
+  std::cout << std::is_same<decltype(d), int>()
+            << std::endl; // 1 (true, hover over std::is_same to see the
+                          // compile-time value)
+
+  int e = 9;
+  int &f = e;
+  std::cout << std::is_same<decltype(f), int &>() << std::endl; // 1 (true)
+
+  int h = 7;
+  std::cout << std::is_same<decltype(std::move(h)), int &&>()
+            << std::endl; // 1 (true)
+
+  // === decltype(auto) ===
+  int j = 10;
+  std::cout << std::is_same<decltype(j), int>() << std::endl; // 1 (true)
+
+  int k = 11;
+  std::cout << std::is_same<decltype((k)), int &>() << std::endl; // 1 (true)
+
+  int l = 12;
+  std::cout << std::is_same<decltype(std::move(l)), int &&>()
+            << std::endl; // 1 (true)
+
+  const int m = 13;
+  std::cout << std::is_same<decltype(m), const int>() << std::endl; // 1 (true)
+
+  const int n = 14;
+  std::cout << std::is_same<decltype((n)), const int &>()
+            << std::endl; // 1
+                          // (true)
+
+  const int o = 15;
+  std::cout << std::is_same<decltype(std::move(o)), const int &&>()
+            << std::endl; // 1 (true)
+}
+} // namespace demo5
+
 int main() {
   demo1::main();
   demo2::main();
   demo3::main();
   demo4::main();
+  demo5::main();
   return 0;
 }

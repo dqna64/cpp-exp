@@ -80,6 +80,10 @@ namespace demo5 {
 void main() {
   /**
    * @brief Moving back and forth with a bidirectional iterator (std::list)
+   * Note using std::advance is not the same as += 2 or -= 2 for random access
+   * iterators. See demo6
+   * std::list is not a random access iterator. Given it is implemetned as a
+   * doubly linked list, think about why.
    *
    */
   auto list =
