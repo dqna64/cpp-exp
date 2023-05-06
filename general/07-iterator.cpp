@@ -135,10 +135,97 @@ void main() {
 }
 } // namespace demo6
 
+namespace demo7 {
+/**
+ * @brief Iterator invalidation (for vector iterator)
+ *
+ */
+
+void main() {
+#include <iostream>
+#include <vector>
+
+  std::vector<int> vec = {1, 2, 3, 4, 5};
+
+  // Get an iterator to the third element (0-indexed)
+  std::vector<int>::iterator it = vec.begin() + 2;
+
+  // Print the current iterator value
+  std::cout << "Before insertion: " << *it << std::endl;
+
+  // Insert a new element at the beginning of the vector
+  vec.insert(vec.begin(), 0);
+
+  // The iterator is now invalidated due to the insertion
+
+  // Accessing the iterator now would result in undefined behavior
+  // Uncomment the following line to see the undefined behavior
+  std::cout << "After insertion: " << *it << std::endl;
+
+  // To fix the iterator invalidation, update the iterator after the insertion
+  it = vec.begin() +
+       3; // Adjust the iterator to point to the same element as before
+
+  // Now the iterator is valid, and we can access its value
+  std::cout << "After insertion (updated iterator): " << *it << std::endl;
+
+  std::cout << "vector capacity: " << vec.capacity() << std::endl;
+  vec.push_back(6);
+  vec.push_back(7);
+  vec.push_back(8);
+  vec.push_back(9);
+  vec.push_back(10);
+  // Capacity reached, vector is reallocated, iterator invalidated
+  vec.push_back(11);
+
+  // Uncomment the following line to see the undefined behavior
+  std::cout << "After reallocation: " << *it << std::endl;
+}
+} // namespace demo7
+
+namespace demo8 {
+/**
+ * @brief iterator adaptors
+ *
+ */
+
+#include <algorithm>
+#include <iostream>
+#include <iterator>
+#include <vector>
+
+int main() {
+  std::vector<int> vec1 = {1, 2, 3, 4, 5};
+  std::vector<int> vec2;
+
+  std::copy(vec1.begin(), vec1.end(), std::back_inserter(vec2));
+
+  for (const auto &elem : vec2) {
+    std::cout << elem << " ";
+  } // 1 2 3 4 5
+  std::cout << std::endl;
+
+  // Front inserter into vec3. must be std::deque or std::list (must support
+  // push_front)
+  std::list<int> vec3;
+  std::copy(vec1.begin(), vec1.end(), std::front_inserter(vec3));
+
+  for (const auto &elem : vec3) {
+    std::cout << elem << " ";
+  } // 5 4 3 2 1
+  std::cout << std::endl;
+
+  return 0;
+}
+
+} // namespace demo8
+
 int main() {
   demo1::main();
   demo2::main();
   demo3::main();
   demo5::main();
   demo6::main();
+  demo7::main();
+  demo8::main();
 }
