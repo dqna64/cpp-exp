@@ -76,29 +76,44 @@
 		- `std::sort`
 		- `std::reverse`
 		- `std::max_element`, `std::min_element`
-	- Algorithms’ Iterator Requirements
-	-
+	- algorithms’ iterator category requirements: each algorithm can only operate on containers of certain iterator category e.g. std::sort only on random access iterator containers like vector, deque, list
 - ## Lambda Functions
 	- useful for std algorithms e.g. std::accumulate, std::find_if, std::for_each, std::transform
 	- capture by value or by reference
-- ## Scopes (3.1)
+- ## Scopes
+	- lec 3.1
 	- list types of scopes
-	- `namespace`
+	- ### `namespace`
 		- `inline` namespace
 		- anonymous namespace -- members only accessible within file
 		- aliases
 		- `using` directive
 		- name lookup, ambiguity, overload resolution, argument-dependent lookup (ADL)
-	- object lifecycle
+		- good practice: always fully-qualify everything, including using `::my_thing` for `my_thing` in global scope or anonymous namespace
+	- ## object lifecycle
 		- object construction
 			- constructor
 			- methods to initialise
 				- function call syntax `MyClass myObj(1, 'b')`
 				- initialiser list / uniform initialisation syntax `MyClass myObj{1,'b'}`
 				- `new` operator `MyClass* myObjectPtr = new MyClass(1, 'b')`
+			- stack vs heap
+			- `new`
 		- object destruction
-- ## Class Types (3.2)
-- [] INCOMPLETE
+			- when
+				- stack objects destroyed at end of scope
+				- `static`/global objects destroyed at end of program
+				- heap/dynamically-allocated objects  destroyed on `free()`/`delete`
+- ## Class Types
+	- lec 3.2
+	- class types: `struct`, `union`, `class`
+	- member access modifiers: public, protected, private, virtual
+	- constructor
+		- construction order
+		- initialiser list
+		- delegating constructor
+	- exercise qs
+		- diff between `struct` and `class`
 - ## Resource Management
 	- `new`
 	- `delete`, `delete[]`
