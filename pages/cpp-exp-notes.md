@@ -32,27 +32,55 @@
 		- Ordering guarantees (for associative containers)
 		- Duplicate element handling (for associative containers)
 		- Automatic resizing
+	- Exercise qs
+		- diff between vector and array
+	- Container-like types
+		- `std::pair`
+		- `std::tuple`
+		- `std::function`
+		- `std::optional`
+		- `std::variant`
+		- `std::any`
 - ## STL Iterators
 	- lec 2.3
-	- `const std::vector<int>::iterator` vs `std::vector<int>::const_iterator`
-	- Iterator invalidation
+	- `const std::vector<int>::iterator` vs `std::vector<int>::const_iterator` vs `const std::vector<int>::iterator`
 	- Iterator adaptors
-		- Reverse iterators
-		- Back inserter iterators
-		- Insert iterators
+		- **Reverse iterators** `rbegin()`, `rend()`
+		- **Back inserter iterators**
+		- **Insert iterators**
 	- Iterator categories
-		- input, output, forward, bi-directional, random access
+		- the categories
+			- **input**
+				- e.g. std::istream
+			- **output**
+				- e.g. std::ostream
+			- **forward**
+				- e.g. std::forward_list
+			- **bi-directional**
+				- e.g. std::list
+			- **random access**
+				- e.g. std::array, std::vector
+		- inheritance structure (e.g. random access it can do everything a bi-directional it can, and more)
+	- Iterator invalidation
 - ## STL Algorithms
 	- lec 2.4
+	- https://en.cppreference.com/w/cpp/algorithm
 	- Examples
-		- `std::accumulate`
+		- `std::accumulate` (in `<numeric>`)
 		- `std::copy`
 		- `std::find`
 		- `std::find_if`
-		- `std::transform`
+		- `std::transform` (essentially map)
 		- `std::swap`
 		- `std::lower_bound`
+		- `std::sort`
+		- `std::reverse`
+		- `std::max_element`, `std::min_element`
 	- Algorithms’ Iterator Requirements
+	-
+- ## Lambda Functions
+	- useful for std algorithms e.g. std::accumulate, std::find_if, std::for_each, std::transform
+	- capture by value or by reference
 - ## Scopes (3.1)
 	- list types of scopes
 	- `namespace`
@@ -130,3 +158,14 @@
 	- `consteval`
 - ## Misc
 	- `decltype()`
+	- named requirements
+		- Container
+			- SequenceContainer
+			- ContiguousContainer
+			- ReversibleCotnainer
+			- AssociativeContainer
+			- UnorderedAssociativeContainer
+			- AllocatorAwareContainer
+- ## Questions
+	- How are the non-hashed associative containers (map, set) implemented?
+	- What does amortized mean
