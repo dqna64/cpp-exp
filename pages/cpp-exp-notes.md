@@ -114,12 +114,43 @@
 		- delegating constructor
 	- exercise qs
 		- diff between `struct` and `class`
+	- implicit class type conversion & `explicit`
+	- 6 special member functions
+	- synthesised / default special member functions (for construction, copy construction and destruction)
+		- `default` opt-in
+		- `delete` opt-out
+	- incomplete types
+	- `this` pointer
+	- `static` members
+	- `friend`
+- ## Operator Overloading
+	- [ ] incomplete
+	- spaceship operator
+		- three kinds of orderings
+			- `std::strong_ordering`
+			- `std::weak_ordering`
+			- `std::partial_ordering`
+- ## Custom Iterators
+	- https://www.internalpointers.com/post/writing-custom-iterators-modern-cpp
+	- automic reverse iterator
+- ## Exceptions
+	- `try`, `catch`, `throw`
+	- throw by value, catch by const ref
+	- `noexcept`
+	- stack unwinding
+	- exception safety levels
+		- strong exception safety
 - ## Resource Management
+	- ways to make resource outlive it's original scope
+		- either not the same resource, or doesn't work, or requires dynamic alloc and mem management
 	- `new`
 	- `delete`, `delete[]`
 	- Rule of 5
 	- copy constructor and assignment operator
 	- move constructor and assignment operator
+	- value semantics vs move semantics
+	- RAII
+	- Smart Pointers
 - ## Inheritance /  Polymorphism
 	- structs & classes
 	- member visibility (public, protected, private for structs & classes)
