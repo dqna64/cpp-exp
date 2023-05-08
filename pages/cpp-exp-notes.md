@@ -146,30 +146,55 @@
 	- `new`
 	- `delete`, `delete[]`
 	- Rule of 5
-	- copy constructor and assignment operator
-	- move constructor and assignment operator
 	- value semantics vs move semantics
 	- RAII
-	- Smart Pointers
-- ## Inheritance /  Polymorphism
+		- copy/move constructor/assignment-operator implementations
+		- explicitly & implicitly deleted copy and move
+		- Smart Pointers
+			- four types
+				- `std::unique_ptr<T>`, `std::unique_ptr[]>`
+					- `std::make_unique()`
+					- use raw pointer as observer
+				- `T*` (raw pointer)
+				- `std::shared_ptr<T>`, `std::shared_ptr<t[]>`
+					- `std::make_shared()`
+					- use weak pointer as observer
+				- `std::weak_ptr<T>`, `std::weak_ptr<T[]>`
+- ## Dynamic Polymorphism / Inheritance
 	- structs & classes
 	- member visibility (public, protected, private for structs & classes)
 		- default visibility
 	- object slicing problem
 		- *consequence: only pointers and references to classes can be used for runtime polymorphism*
 	- static vs dynamic polymorphism i.e. compile-time vs run-time
-	- static vs dynamic binding
+	- **static vs dynamic binding**
 	- `virtual`, `override`, `final`
+	- `dynamic_cast<T>`
 	- *default arguments of `virtual` methods are determined at compile time*
-	- vtable
+	- **vtable**
 	- *Every polymorphic classes destructor must be virtual, from base to last derived*
+	- exercises qs
+		- how to construct a sequence (e.g. vector) of polymorphic objects)
+	- pure virtual methods (`virtual void fn() = 0;`)
+	- upcast
+	- downcast
 	-
 - ## Templates
 	- templates intro: https://slides.com/haydensmith/comp6771-21t2-7-1
 	- advanced templates: https://slides.com/haydensmith/comp6771-21t2-8-1
-	- template type parameter
-	- template non-type parameter
-	- template template parameter
+	- 5 kinds
+		- **function templates**
+		- **class templates**
+		- **alias templates**
+		- **variable templates**
+		- **variadic templates**
+	- 3 kinds of template parameters
+		- **template type parameter**
+			- `typename` or `class` keyword, equivalent, but former is newer and preferred
+		- **template non-type parameter**
+			- implicitly `constexpr`
+		- **template template parameter**
+	- default template parameters
 	- *must put template definitions inside header file*
 	- lazy instantiation
 	- inclusion compilation model
@@ -193,6 +218,10 @@
 			- `std::is_same`
 			- `std::is_integral`
 			- `std::is_void`
+			- `std::is_pointer`, `std::is_reference`
+			- `std::is_true_type`, `std::is_false_type`
+			- `std::conditional_t` can be used as base struct to create type traits
+			- `std::same_as`
 	- `decltype()`
 		- `decltype(auto)`
 	- unevaluated contexts
@@ -202,6 +231,8 @@
 		- functions
 		- if statements
 	- `consteval`
+	- `#include <concepts>`
+		- `std::floating_point`
 - ## Misc
 	- `decltype()`
 	- named requirements

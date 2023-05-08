@@ -29,12 +29,14 @@ void main() {
 namespace demo2 {
 
 /**
- * @brief Demonstration of using concepts to express template constraints.
+ * @brief Demonstration of using template constraints.
  *
  */
 template <typename IntegralType>
-concept integral_constraint = std::is_integral<IntegralType>::value;
-auto add_integral(const IntegralType v1, const IntegralType v2) {
+
+auto add_integral(const IntegralType v1, const IntegralType v2)
+  requires std::is_integral<IntegralType>::value
+{
   return v1 + v2;
 }
 
@@ -55,10 +57,12 @@ namespace demo3 {
  * as well as the auto deduced return type.
  *
  */
-template <typename IntegralType>
-concept integral_constraint = std::is_integral<IntegralType>::value;
-integral_constraint auto add_integral(const integral_constraint auto v1,
-                                      const integral_constraint auto v2) {
+template <typename T>
+concept integral_constraint = requires { std::is_integral<T>::value; };
+
+template <integral_constraint IntegralType>
+  requires integral_constraint<IntegralType>
+IntegralType add_integral(const IntegralType v1, const IntegralType v2) {
   return v1 + v2;
 }
 
@@ -71,6 +75,10 @@ void main() {
       add_integral(true, true); // OK, instantiates add_integral<bool>
   // add_integral(4.0, 5.0);       // Error, substitution failure
   // add_integral("hello", "world"); // Error, substitution failure
+
+  (void)a;
+  (void)b;
+  (void)c;
 }
 } // namespace demo3
 

@@ -1,7 +1,9 @@
 #include <array>
 #include <iostream>
 
-void print_arr_address(int *arr) { std::cout << "arr: " << arr << std::endl; }
+void print_arr_address(int *arr) {
+  std::cout << "arr addr: " << arr << std::endl;
+}
 
 void print_array(int *arr, size_t size) {
   for (int i = 0; i < size; i++) {
