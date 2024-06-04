@@ -14,7 +14,27 @@
 		- overload resolution
 	- Initializer list
 		- *Can be used to initialize array, container, class object*
+- ## Basic Types (1)
+	- ### fundamental types
+		- https://en.cppreference.com/w/cpp/language/types
+	- ### type conversions
+		- implicit
+		- explicit
+		- `static_cast<T>()`
+		- `dynamic_cast`
+	- ### functions
+		- `auto myfunc(x: double, y: char = 'e') -> int {}`
+		- default parameters
+		- function overloading
+	- ### values and references
+		- `int& x = 5;`
+		- `&` reference
+			- can't be null (?)
+				- [reference-to-null.cpp](../general/33-reference-to-null.cpp)
+			- can't be changed to refer to other memory once set
+			-
 - ## STL Containers
+  id:: 64551706-8ed3-421d-b44c-bccc4f8e9a77
 	- lec 2.2
 	- [](https://embeddedartistry.com/blog/2017/06/21/an-introduction-to-stdvector/)[https://embeddedartistry.com/blog/2017/06/21/an-introduction-to-stdvector/](https://embeddedartistry.com/blog/2017/06/21/an-introduction-to-stdvector/)
 	- [](https://embeddedartistry.com/blog/2017/08/02/an-overview-of-c-stl-containers/)[https://embeddedartistry.com/blog/2017/08/02/an-overview-of-c-stl-containers/](https://embeddedartistry.com/blog/2017/08/02/an-overview-of-c-stl-containers/)
@@ -72,10 +92,16 @@
 		- `std::find_if`
 		- `std::transform` (essentially map)
 		- `std::swap`
-		- `std::lower_bound`
+		- `std::lower_bound`, `std::upper_bound`, `std::binary_search`, `std::equal_range`
+			- Note: runs in O(logn) for `std::vector`, but `O(n)` for `std::set` bc it does not support random access, which is needed for binary search. for `std::set` use member functions `.lower_bound()`, `.upper_bound()`, `.equal_range()`, `s.find(x) != s.end()` for bsearch
 		- `std::sort`
+		- `std::random_shuffle`
 		- `std::reverse`
-		- `std::max_element`, `std::min_element`
+		- `std::max`, `std::min`,`std::max_element`, `std::min_element`
+		- `std::fill`
+		- `std::search`
+		- `std::count`
+		- `std::next_permutation`algorithms’ iterator category requirements: each algorithm can only operate on containers of certain iterator category e.g. std::sort only on random access iterator containers like vector, deque, list
 	- algorithms’ iterator category requirements: each algorithm can only operate on containers of certain iterator category e.g. std::sort only on random access iterator containers like vector, deque, list
 - ## Lambda Functions
 	- useful for std algorithms e.g. std::accumulate, std::find_if, std::for_each, std::transform
@@ -178,7 +204,7 @@
 	- pure virtual methods (`virtual void fn() = 0;`)
 	- upcast
 	- downcast
-	-
+		-
 - ## Templates
 	- templates intro: https://slides.com/haydensmith/comp6771-21t2-7-1
 	- advanced templates: https://slides.com/haydensmith/comp6771-21t2-8-1
@@ -243,6 +269,21 @@
 			- AssociativeContainer
 			- UnorderedAssociativeContainer
 			- AllocatorAwareContainer
+	- `<cmath>` header
+		- pow
+		- sqrt
+		- round
+		- floor
+		- fmax, fmin
+		- log2
+	- `<iostream>` header
+	  id:: 656d8757-c976-4610-af62-8da82ee654be
+	- `<memory>` header
+	- `<regex>` header
+	- `<thread>` header
+	- `<cctype>` header
+	- `<sstream>` header
+		- ostringstream
 - ## Questions
 	- How are the non-hashed associative containers (map, set) implemented?
 	- What does amortized mean
