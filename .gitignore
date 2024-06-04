@@ -3,4 +3,6 @@ a.out
 misc
 .cache/
 build/
+cs6771-24T2/
+.DS_Store
 
