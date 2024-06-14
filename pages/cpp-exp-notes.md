@@ -14,6 +14,13 @@
 		- overload resolution
 	- Initializer list
 		- *Can be used to initialize array, container, class object*
+	- `[[nodiscard]]`
+	- if statement with intialiazer
+		- ```
+		  if (auto in = std::ofstream("file.txt"); in) {
+		      // code to execute if 'in' is true (the file was opened successfully)
+		  }
+		  ```
 - ## Basic Types (1)
 	- ### fundamental types
 		- https://en.cppreference.com/w/cpp/language/types
@@ -29,10 +36,15 @@
 	- ### values and references
 		- `int& x = 5;`
 		- `&` reference
-			- can't be null (?)
+			- nullibility: can't be null (?)
 				- [reference-to-null.cpp](../general/33-reference-to-null.cpp)
+				- potential issues
+					- 1. object goes out of scope
+					- 2. dynamically allocated object freed
+					- leads to undefined behaviour when attempt access object via reference
 			- can't be changed to refer to other memory once set
-			-
+	- ### declarations v definitions
+	- ### loops
 - ## STL Containers
   id:: 64551706-8ed3-421d-b44c-bccc4f8e9a77
 	- lec 2.2
@@ -67,6 +79,8 @@
 	- Iterator adaptors
 		- **Reverse iterators** `rbegin()`, `rend()`
 		- **Back inserter iterators**
+			- `std::back_inserter_iterator`
+			- `std::back_inserter()`
 		- **Insert iterators**
 	- Iterator categories
 		- the categories
@@ -82,13 +96,16 @@
 				- e.g. std::array, std::vector
 		- inheritance structure (e.g. random access it can do everything a bi-directional it can, and more)
 	- Iterator invalidation
+	- stream iterators
 - ## STL Algorithms
 	- lec 2.4
 	- https://en.cppreference.com/w/cpp/algorithm
 	- Examples
 		- `std::accumulate` (in `<numeric>`)
+		- `std::next`
 		- `std::copy`
 		- `std::find`
+			- TODO what if `find(it1, it2, val)` where it1 does not lead to it2?
 		- `std::find_if`
 		- `std::transform` (essentially map)
 		- `std::swap`
