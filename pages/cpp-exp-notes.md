@@ -153,20 +153,27 @@
 	- lec 3.2
 	- class types: `struct`, `union`, `class`
 	- member access modifiers: public, protected, private, virtual
-	- constructor
-		- construction order
+	- construction order
+	- constructor \ initialisation
+		- default member initialisation
+		- constructor initialisation list
 		- initialiser list
+		- in-class member initialisers
 		- delegating constructor
+		- default constructor
 	- exercise qs
 		- diff between `struct` and `class`
-	- implicit class type conversion & `explicit`
+	- implicit class type conversion and `explicit`
+	- `const` member functions
 	- 6 special member functions
 	- synthesised / default special member functions (for construction, copy construction and destruction)
 		- `default` opt-in
 		- `delete` opt-out
 	- incomplete types
-	- `this` pointer
-	- `static` members
+	- `this` pointer implicit argument of instance methods
+	- `static` member variables
+		- see [static-var.cpp](general/37-static-var.cpp)
+	- `static` member functions
 	- `friend`
 - ## Operator Overloading
 	- [ ] incomplete
