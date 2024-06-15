@@ -21,6 +21,8 @@
 		      // code to execute if 'in' is true (the file was opened successfully)
 		  }
 		  ```
+	- static local variables, static global variables, static member variables
+		- see [static-var.cpp](general/37-static-var.cpp)
 - ## Basic Types (1)
 	- ### fundamental types
 		- https://en.cppreference.com/w/cpp/language/types
