@@ -36,6 +36,7 @@ add_compile_options(
     -fstack-protector-strong
     -Wno-unused-variable
     -Wno-unused-private-field
+    -Wimplicit-fallthrough
 )
 
 add_subdirectory(general)
