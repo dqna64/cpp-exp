@@ -1,5 +1,6 @@
 Language: Cpp
-Standard: Cpp11
+Standard: Cpp20
+
 AccessModifierOffset: -3
 AlignAfterOpenBracket: Align
 AlignConsecutiveAssignments: false
@@ -23,6 +24,7 @@ AlwaysBreakTemplateDeclarations: Yes
 BinPackArguments: false
 BinPackParameters: false
 BreakBeforeBinaryOperators: NonAssignment
+
 BreakBeforeBraces: Custom
 BraceWrapping:
   AfterCaseLabel: false
@@ -41,6 +43,7 @@ BraceWrapping:
   SplitEmptyFunction: false
   SplitEmptyRecord: false
   SplitEmptyNamespace: false
+
 BreakBeforeTernaryOperators: true
 BreakConstructorInitializers: BeforeComma
 BreakInheritanceList: BeforeComma
@@ -49,7 +52,7 @@ ColumnLimit: 120
 CompactNamespaces: true
 ConstructorInitializerAllOnOneLineOrOnePerLine: false
 ConstructorInitializerIndentWidth: 0
-ContinuationIndentWidth: 4
+ContinuationIndentWidth: 3
 Cpp11BracedListStyle: true
 FixNamespaceComments: true
 IncludeBlocks: Preserve
@@ -67,6 +70,7 @@ IndentWrappedFunctionNames: false
 KeepEmptyLinesAtTheStartOfBlocks: false
 MaxEmptyLinesToKeep: 1
 NamespaceIndentation: All
+
 PenaltyBreakAssignment: 10
 PenaltyBreakBeforeFirstCallParameter: 10
 PenaltyBreakComment: 10
@@ -75,10 +79,13 @@ PenaltyBreakString: 10
 PenaltyBreakTemplateDeclaration: 10
 PenaltyExcessCharacter: 10
 PenaltyReturnTypeOnItsOwnLine: 10
+
 PointerAlignment: Left
 ReflowComments: true
+
 SortIncludes: true
 SortUsingDeclarations: true
+
 SpaceAfterCStyleCast: false
 SpaceAfterLogicalNot: false
 SpaceAfterTemplateKeyword: false
@@ -100,4 +107,4 @@ SpacesInParentheses: false
 SpacesInSquareBrackets: false
 TabWidth: 4
 UseCRLF: false
-UseTab: ForIndentation
+UseTab: Never # Use spaces for indentation instead
