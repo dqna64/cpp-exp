@@ -25,12 +25,13 @@ struct Birb {
     // === Copy constructor
     Birb(const Birb& other)
     : size_{other.size_}
-    , weight_{new double{}}
+    , weight_{new double{*(other.weight_)}}
     , arr_{new int[other.size_]} {
         std::cout << "Birb(const Birb&)\n";
 
-        *weight_ = *(other.weight_);
-        std::copy(other.arr_, other.arr_ + other.size_, arr_);
+        for (size_t i = 0; i < other.size_; ++i) {
+            arr_[i] = other.arr_[i];
+        }
     }
 
     // === Copy assignment
@@ -57,6 +58,9 @@ struct Birb {
         return *this;
     }
 
+    // Birb(Birb&& other) noexcept = default;
+    // auto operator=(Birb&& other) noexcept -> Birb& = default;
+
     // === Move constructor
     Birb(Birb&& other) noexcept
     : size_{other.size_}
@@ -78,6 +82,10 @@ struct Birb {
         if (this == &other) {
             return *this;
         }
+
+        delete weight_;
+        delete[] arr_;
+
         size_ = other.size_;
         weight_ = other.weight_;
         other.weight_ = nullptr;
@@ -90,6 +98,7 @@ struct Birb {
 
 int main() {
     {
+        // === Demo of copy constructor and copy assignment
         std::cout << "=== Constructor\n";
         auto b1 = Birb{5, 84932.4392};
 
@@ -107,6 +116,11 @@ int main() {
     }
 
     {
+        // === Demo of move constructor and move assignment
+        // NOTE: if you comment out your custom move constructor/assignment
+        // implementations from the class Birb, notice that all these
+        // fallback to copy constructor/assignment, NOT an implicitly generated move
+        // constructor/assignment.
         std::cout << "=== Constructors\n";
         auto b1 = Birb{3, 9374.74638};
         auto b2 = Birb{8, 3290523.74};
