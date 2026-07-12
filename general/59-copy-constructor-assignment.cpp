@@ -114,6 +114,7 @@ int main() {
 
         std::cout << "=== Destructors\n";
     }
+    std::cout << "===\n";
 
     {
         // === Demo of move constructor and move assignment
@@ -139,4 +140,14 @@ int main() {
 
         std::cout << "=== Destructors\n";
     }
+    std::cout << "===\n";
+
+    {
+        // === Demo of attempt to move a const object
+        const auto b1 = Birb{3, 98439.38924};
+        auto b2 = std::move(b1);
+        // ^^ Calling std::move on a const object falls back to copy
+        // constructor/assignment
+    }
+    std::cout << "===\n";
 }
